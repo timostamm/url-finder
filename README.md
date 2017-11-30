@@ -13,17 +13,15 @@ $html = <<<HTML
 	<style>
 		.bg-img { background-image: url(../images/h.jpg); }
 	</style>
-	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+	<script src="https://cdn.tld/angular.min.js"></script>
     <link rel="stylesheet" type="text/css" href="/styls/f.css" />
 HTML;
 
 $finder = UrlFinder::create($html, 'http://domain.tld/products/all.html');
 
 foreach ($finder->find('*domain.tld/*.jpg') as $url) {
-
-	$newpath = '/images/ . $url->path->filename();
-    $url->replacePath($newpath);
-
+  $newpath = '/images/ . $url->path->filename();
+  $url->replacePath($newpath);
 }
 
 $finder->getDocument(); // returns the updated HTML string
