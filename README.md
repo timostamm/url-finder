@@ -13,18 +13,36 @@ Example: Find all jpegs on our domain and move them to /images/
     .bg-img { background-image: url(../images/h.jpg); }
   </style>
   <script src="https://cdn.tld/angular.min.js"></script>
-  <link rel="stylesheet" type="text/css" href="/styls/f.css" />
+  <link rel="stylesheet" type="text/css" href="/styles/f.css" />
+  ...
 ```
 
 ```PHP
-$finder = UrlFinder::create($html, 'http://domain.tld/products/all.html');
+$documentUrl = 'http://domain.tld/products/all.html';
+$finder = UrlFinder::create($html, $documentUrl);
 
 foreach ($finder->find('*domain.tld/*.jpg') as $url) {
-  $newpath = '/images/ . $url->path->filename();
-  $url->replacePath($newpath);
+  $newpath = '/images/' . $url->path->filename();
+  $url
+    ->replacePath($newpath)
+    ->makeAbsolute()
+    ->clearHost();
 }
 
 $finder->getDocument(); // returns the updated HTML string
+```
+
+```HTML
+<html>
+<body>
+  <img src="/images/a.jpg" >
+  <div style="background-image: url(/images/c.jpg);"></div>
+  <style>
+    .bg-img { background-image: url(/images/h.jpg); }
+  </style>
+  <script src="https://cdn.tld/angular.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="/styles/f.css" />
+  ...
 ```
 
 
