@@ -4,8 +4,7 @@ Find and replace URLs in HTML and CSS documents.
 
 Example: Find all jpegs on our domain and move them to /images/
 
-```PHP
-$html = <<<HTML
+```HTML
 <html>
 <body>
   <img src="http://domain.tld/img/a.jpg" >
@@ -15,8 +14,9 @@ $html = <<<HTML
   </style>
   <script src="https://cdn.tld/angular.min.js"></script>
   <link rel="stylesheet" type="text/css" href="/styls/f.css" />
-HTML;
+```
 
+```PHP
 $finder = UrlFinder::create($html, 'http://domain.tld/products/all.html');
 
 foreach ($finder->find('*domain.tld/*.jpg') as $url) {
@@ -31,12 +31,18 @@ $finder->getDocument(); // returns the updated HTML string
 Finding URLs via the fluid collection:
 
 ```PHP
-$finder
+$urls = $finder
   ->find('*') // matches the entire absolute URL
   ->matchHost('*')
   ->matchPath('*')
   ->onlyHttps()
-  ->matchFilenameNot('*.less')
+  ->matchFilenameNot('*.less');
+  // etc.
+  
+$urls->count();
+$urls->toArray();
+$urls->first();
+foreach($urls as $url) {}
 ```
 
 
