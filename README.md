@@ -82,3 +82,16 @@ $url->clear( Url::CREDENTIALS );
 
 See https://github.com/timostamm/url-builder for documentation 
 of the URL object.
+
+
+
+Finding URLs in CSS works exactly the same: 
+
+```PHP
+$finder = UrlFinder::create($css, 'http://domain.tld/styles/main.css');
+$finder->find()->first()->makeAbsolute();
+$finder->getDocument();
+```
+
+Please note that import statements are not suported and you have to 
+follow stylesheet-links yourself.
