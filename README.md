@@ -2,7 +2,8 @@
 
 Find and replace URLs in HTML and CSS documents. 
 
-Example: Find all jpegs on our domain and move them to /images/
+
+Example input HTML:
 
 ```HTML
 <html>
@@ -16,6 +17,8 @@ Example: Find all jpegs on our domain and move them to /images/
   <link rel="stylesheet" type="text/css" href="/styles/f.css" />
   ...
 ```
+
+Find all jpegs on our domain and move them to /images/
 
 ```PHP
 $documentUrl = 'http://domain.tld/products/all.html';
@@ -32,6 +35,8 @@ foreach ($finder->find('*domain.tld/*.jpg') as $url) {
 $finder->getDocument(); // returns the updated HTML string
 ```
 
+The result:
+
 ```HTML
 <html>
 <body>
@@ -45,8 +50,12 @@ $finder->getDocument(); // returns the updated HTML string
   ...
 ```
 
+The UrlFinder takes care of proper quoting of URLs in 
+attributes, url-notations in style-attributes and url-
+notation within style-tags.
 
-Finding URLs via the fluid collection:
+
+Using the fluid collection interface:
 
 ```PHP
 $urls = $finder
