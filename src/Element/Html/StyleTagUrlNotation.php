@@ -3,12 +3,12 @@
 namespace TS\Web\UrlFinder\Element\Html;
 
 
-use TS\Web\UrlFinder\Element\Css\UrlNotation;
-use TS\Web\UrlFinder\Element\StringElement;
 use TS\Web\UrlFinder\Context\ElementContext;
+use TS\Web\UrlFinder\Element\StringElement;
+use TS\Web\UrlFinder\Element\Css\UrlNotation;
 
 
-class StyleTagUrlNotation extends StringElement implements ElementContext
+class StyleTagUrlNotation extends StringElement implements ElementContext, HtmlTag
 {
 
 	const RE_STYLE_TAG_CONTENT = <<<REGEX
@@ -80,6 +80,16 @@ REGEX;
 	public function getUrl()
 	{
 		return $this->url->getUrl();
+	}
+
+	/**
+	 *
+	 * {@inheritdoc}
+	 * @see \TS\Web\UrlFinder\Element\Html\HtmlTag::getHtmlTag()
+	 */
+	public function getHtmlTag()
+	{
+		return $this->tag_html;
 	}
 
 }
