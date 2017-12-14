@@ -124,6 +124,17 @@ abstract class BaseUrlFinder implements DocumentContext
 		}
 		return $this->replaceDocumentUrls($this->document, $this->find());
 	}
+	
+	/**
+	 * @return bool
+	 */
+	public final function isDocumentChanged() {
+		try {
+			return $this->document !== $this->getDocument();
+		} catch (InvalidUrlException $ex) {
+			return false;
+		}
+	}
 
 	/**
 	 * Find all URLs matching the pattern.
