@@ -7,7 +7,7 @@ use TS\Web\UrlBuilder\InvalidUrlException;
 use TS\Web\UrlBuilder\Url;
 
 
-class FoundUrl extends Url implements UrlContext, DocumentContext
+class FoundUrl extends Url implements UrlContext
 {
 
 	/**
@@ -70,7 +70,7 @@ class FoundUrl extends Url implements UrlContext, DocumentContext
 	{
 		if (is_null($base)) {
 			
-			$base = $this->getDocumentUrl();
+			$base = $this->getDocumentContext()->getUrl();
 			
 			if (! $base->isEmpty()) {
 				
@@ -108,7 +108,7 @@ class FoundUrl extends Url implements UrlContext, DocumentContext
 	{
 		if (is_null($base)) {
 			
-			$base = $this->getDocumentUrl();
+			$base = $this->getDocumentContext()->getUrl();
 			
 			if (! $base->isEmpty()) {
 				
@@ -153,21 +153,21 @@ class FoundUrl extends Url implements UrlContext, DocumentContext
 	/**
 	 *
 	 * {@inheritdoc}
-	 * @see DocumentContext::getDocumentUrl()
-	 */
-	public function getDocumentUrl()
-	{
-		return $this->documentContext->getDocumentUrl();
-	}
-
-	/**
-	 *
-	 * {@inheritdoc}
 	 * @see UrlContext::getElementContext()
 	 */
 	public function getElementContext()
 	{
 		return $this->elementContext;
+	}
+
+	/**
+	 *
+	 * {@inheritdoc}
+	 * @see \TS\Web\UrlFinder\Context\UrlContext::getDocumentContext()
+	 */
+	public function getDocumentContext()
+	{
+		return $this->documentContext;
 	}
 
 	/**
@@ -179,7 +179,7 @@ class FoundUrl extends Url implements UrlContext, DocumentContext
 	{
 		$abs = clone $this;
 		
-		$base = $this->getDocumentUrl();
+		$base = $this->getDocumentContext()->getUrl();
 		
 		if (! $base->isEmpty()) {
 			if ($base->isAbsolute()) {

@@ -7,7 +7,7 @@ use TS\Web\UrlFinder\Context\ElementContext;
 use TS\Web\UrlFinder\Element\StringElement;
 
 
-class BaseAttributeValue extends StringElement implements ElementContext, HtmlTag
+abstract class BaseAttributeValue extends StringElement implements ElementContext, HtmlTag
 {
 
 	public static function findTagAttr($re, $string)

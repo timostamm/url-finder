@@ -197,15 +197,17 @@ HTML;
         $url = $this->finder->find()->first();
         $this->assertEquals('foo?x=y&a=b', $url->__toString());
     }
-
-    public function testOffsetAndCharacter()
+    
+    public function testOFfset()
     {
-        $this->finder->setDocument('<img src="foo">', null);
-        $url = $this->finder->find()->first();
-        $this->assertEquals(10, $url->getElementContext()
-            ->getOffset());
-        $this->assertEquals('"foo" at character 11', $url->getElementContext()
-            ->describe());
+    		$url = $this->finder->setDocument('<img src="foo">', null)->find()->first();
+	    	$this->assertEquals(10, $url->getElementContext()->getOffset());
+    }
+    
+    public function testDescribe()
+    {
+    		$url = $this->finder->setDocument('<img src="foo">', null)->find()->first();
+        $this->assertEquals('URL "foo" for <img> tag', $url->getElementContext()->describe());
     }
 
     /**

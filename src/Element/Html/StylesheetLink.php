@@ -14,7 +14,11 @@ class StylesheetLink extends BaseAttributeValue
 		foreach ($tag_matches as list ($raw_url, $offset, $tag_html)) {
 			yield new StylesheetLink($raw_url, $offset, $tag_html);
 		}
-	
+	}
+
+	public function describe()
+	{
+		return sprintf('URL "%s" in <link rel="stylesheet"> tag', $this->getUrl());
 	}
 
 }

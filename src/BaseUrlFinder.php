@@ -11,9 +11,10 @@ use TS\Web\UrlFinder\Context\DocumentContext;
 use TS\Web\UrlFinder\Context\UrlCollection;
 use TS\Web\UrlFinder\Context\FoundUrl;
 use TS\Web\UrlFinder\Context\ElementContext;
+use LogicException;
 
 
-abstract class BaseUrlFinder implements DocumentContext
+abstract class BaseUrlFinder
 {
 
 	/**
@@ -45,7 +46,14 @@ abstract class BaseUrlFinder implements DocumentContext
 	 * @var FoundUrl[]
 	 */
 	private $parsingUrls;
-
+	
+	/**
+	 * 
+	 * @var DocumentContext
+	 */
+	private $parsingContext;
+	
+	
 	public function __construct()
 	{}
 
@@ -100,8 +108,6 @@ abstract class BaseUrlFinder implements DocumentContext
 
 	/**
 	 * Get the URL of the document.
-	 *
-	 * @see DocumentContext::getDocumentUrl()
 	 */
 	public final function getDocumentUrl()
 	{
@@ -182,14 +188,14 @@ abstract class BaseUrlFinder implements DocumentContext
 	 *
 	 * @param string $url
 	 * @param ElementContext $context
-	 * @throws \LogicException
+	 * @throws LogicException
 	 */
 	final protected function addParsedUrl($url, ElementContext $context)
 	{
 		if (is_null($this->parsingUrls)) {
-			throw new \LogicException('');
+			throw new LogicException('');
 		}
-		$item = FoundUrl::create($url, $context, $this);
+		$item = FoundUrl::create($url, $context, $this->parsingContext);
 		$this->parsingUrls[] = $item;
 	}
 
@@ -199,7 +205,7 @@ abstract class BaseUrlFinder implements DocumentContext
 	 * The default implementation handles element contexts of type StringElement.
 	 *
 	 * @param array $items
-	 * @throws \LogicException
+	 * @throws LogicException
 	 */
 	protected function sortParsedDocumentUrls(array & $items)
 	{
@@ -208,11 +214,11 @@ abstract class BaseUrlFinder implements DocumentContext
 			$b_ctx = $b->getElementContext();
 			if (! $a_ctx instanceof StringElement) {
 				$msg = sprintf('The default implementation of sortDocumentUrls can only handle subclasses of StringElement. Please override replaceDocumentUrls to handle ElementContext of type %s.', get_class($a_ctx));
-				throw new \LogicException($msg);
+				throw new LogicException($msg);
 			}
 			if (! $b_ctx instanceof StringElement) {
 				$msg = sprintf('The default implementation of sortDocumentUrls can only handle subclasses of StringElement. Please override replaceDocumentUrls to handle ElementContext of type %s.', get_class($b_ctx));
-				throw new \LogicException($msg);
+				throw new LogicException($msg);
 			}
 			return $a->getElementContext()->getOffset() - $b->getElementContext()->getOffset();
 		});
@@ -239,7 +245,7 @@ abstract class BaseUrlFinder implements DocumentContext
 			$ctx = $url->getElementContext();
 			if (! $ctx instanceof StringElement) {
 				$msg = sprintf('The default implementation of replaceDocumentUrls can only handle subclasses of StringElement. Please override replaceDocumentUrls to handle ElementContext of type %s.', get_class($ctx));
-				throw new \LogicException($msg);
+				throw new LogicException($msg);
 			}
 			$content[] = substr($document, $cursor, $ctx->getOffset() - $cursor);
 			$content[] = $ctx->encodeUrl($url->__toString());
@@ -259,14 +265,16 @@ abstract class BaseUrlFinder implements DocumentContext
 			throw new DocumentException('Trying to parse document, but document is NULL.');
 		}
 		$this->parsingUrls = [];
+		$this->parsingContext = new DocumentContext($this->documentUrl, $this->document, $this);
 		$this->parseDocumentUrls($this->document, $this->documentUrl);
 		foreach ($this->parsingUrls as $item) {
 			if ($item instanceof FoundUrl === false) {
-				throw new \LogicException('All elements returned from parseDocumentUrls() must be FoundUrl.');
+				throw new LogicException('All elements returned from parseDocumentUrls() must be FoundUrl.');
 			}
 		}
 		$this->sortParsedDocumentUrls($this->parsingUrls);
 		$this->collection = new UrlCollection($this->parsingUrls);
+		$this->parsingContext = null;
 		$this->parsingUrls = null;
 		$this->isParsed = true;
 	}

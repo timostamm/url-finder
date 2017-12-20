@@ -82,6 +82,11 @@ REGEX;
 		return $this->url->getUrl();
 	}
 
+	public function describe()
+	{
+		return sprintf('URL %s in <style> tag', $this->getUrl());
+	}
+
 	/**
 	 *
 	 * {@inheritdoc}

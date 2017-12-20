@@ -17,6 +17,11 @@ class ScriptSource extends BaseAttributeValue
 	
 	}
 
+	public function describe()
+	{
+		return sprintf('URL "%s" for <script> tag', $this->getUrl());
+	}
+
 }
 
 

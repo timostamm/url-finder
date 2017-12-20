@@ -3,12 +3,12 @@
 namespace TS\Web\UrlFinder\Element\Html;
 
 
-use TS\Web\UrlFinder\Element\Css\UrlNotation;
-use TS\Web\UrlFinder\Element\StringElement;
 use TS\Web\UrlFinder\Context\ElementContext;
+use TS\Web\UrlFinder\Element\StringElement;
+use TS\Web\UrlFinder\Element\Css\UrlNotation;
 
 
-class StyleAttributeUrlNotation extends StringElement implements ElementContext
+class StyleAttributeUrlNotation extends StringElement implements ElementContext, HtmlTag
 {
 
 	const RE_ANY_STYLE_ATTR = '/<[^>]+[^>]* style="([^"]+)"[^>]*>/u';
@@ -77,6 +77,17 @@ class StyleAttributeUrlNotation extends StringElement implements ElementContext
 	public function getUrl()
 	{
 		return $this->url->getUrl();
+	}
+
+	public function describe()
+	{
+		$tagname = trim(explode(' ', $this->getHtmlTag())[0], '<');
+		return sprintf('URL "%s" in style attribute of <%s> tag', $this->getUrl(), $tagname);
+	}
+
+	public function getHtmlTag()
+	{
+		return $this->tag_html;
 	}
 
 }

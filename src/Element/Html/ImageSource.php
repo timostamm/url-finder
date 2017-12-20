@@ -14,7 +14,11 @@ class ImageSource extends BaseAttributeValue
 		foreach ($tag_matches as list ($raw_url, $offset, $tag_html)) {
 			yield new ImageSource($raw_url, $offset, $tag_html);
 		}
-	
+	}
+
+	public function describe()
+	{
+		return sprintf('URL "%s" for <img> tag', $this->getUrl());
 	}
 
 }

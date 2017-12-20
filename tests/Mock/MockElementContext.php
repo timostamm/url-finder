@@ -11,7 +11,7 @@ class MockElementContext implements ElementContext
 
 	public function describe()
 	{
-		return MockElementContext::class;
+		return 'MockElementContext';
 	}
 
 }

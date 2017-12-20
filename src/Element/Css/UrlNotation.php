@@ -120,6 +120,11 @@ REGEX;
 		return self::decode($this->raw_url, $this->escapingType);
 	}
 
+	public function describe()
+	{
+		return sprintf('URL "%s"', $this->getUrl());
+	}
+
 }
 
 

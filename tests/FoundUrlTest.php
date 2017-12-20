@@ -1,11 +1,10 @@
 <?php
 
 use PHPUnit\Framework\TestCase;
-use TS\Web\UrlFinder\Mock\MockDocumentContext;
-use TS\Web\UrlFinder\Mock\MockElementContext;
 use TS\Web\UrlBuilder\Url;
-use TS\Web\UrlFinder\Context\FoundUrl;
 use TS\Web\UrlFinder\Context\DocumentContext;
+use TS\Web\UrlFinder\Context\FoundUrl;
+use TS\Web\UrlFinder\Mock\MockElementContext;
 use TS\Web\UrlFinder\Context\ElementContext;
 
 class FoundUrlTest extends TestCase
@@ -35,7 +34,8 @@ class FoundUrlTest extends TestCase
 
 	public function testGetDocumentBaseUrl()
 	{
-		$this->assertEquals($this->base, $this->url->getDocumentUrl());
+		$this->assertEquals($this->base, $this->url->getDocumentContext()
+			->getUrl());
 	}
 
 	public function testHasChanged()
@@ -112,7 +112,7 @@ class FoundUrlTest extends TestCase
 	public function setup()
 	{
 		$this->base = new Url('http://domain.com/catalog/products.html');
-		$this->docContext = new MockDocumentContext($this->base);
+		$this->docContext = new DocumentContext($this->base, null, null);
 		$this->eleContext = new MockElementContext();
 		$this->url = FoundUrl::create('../assets/style.css', $this->eleContext, $this->docContext);
 	}

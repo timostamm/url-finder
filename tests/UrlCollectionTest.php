@@ -2,9 +2,9 @@
 
 use PHPUnit\Framework\TestCase;
 use TS\Web\UrlBuilder\Url;
+use TS\Web\UrlFinder\Context\DocumentContext;
 use TS\Web\UrlFinder\Context\FoundUrl;
 use TS\Web\UrlFinder\Context\UrlCollection;
-use TS\Web\UrlFinder\Mock\MockDocumentContext;
 use TS\Web\UrlFinder\Mock\MockElementContext;
 
 class UrlCollectionTest extends TestCase
@@ -106,7 +106,7 @@ class UrlCollectionTest extends TestCase
 	public function setup()
 	{
 		$base = new Url('http://domain.com/catalog/products.html');
-		$doc = new MockDocumentContext($base);
+		$doc = new DocumentContext($base, null, null);
 		$ele = new MockElementContext();
 		$items = [
 			FoundUrl::create('/assets/style.css', $ele, $doc),

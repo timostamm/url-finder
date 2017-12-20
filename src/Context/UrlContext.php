@@ -5,7 +5,6 @@ namespace TS\Web\UrlFinder\Context;
 
 use TS\Web\UrlBuilder\Url;
 
-
 interface UrlContext
 {
 
@@ -42,6 +41,12 @@ interface UrlContext
 	 * @return ElementContext
 	 */
 	function getElementContext();
+
+	/**
+	 *
+	 * @return DocumentContext
+	 */
+	function getDocumentContext();
 
 	/**
 	 *
