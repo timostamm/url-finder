@@ -27,8 +27,8 @@ class CssUrlFinder extends BaseUrlFinder
 
 	protected function parseDocumentUrls($document, Url $documentUrl)
 	{
-		foreach (UrlNotation::find($document) as $ctx) {
-			$this->addParsedUrl($ctx->getUrl(), $ctx);
+		foreach (UrlNotation::find($document) as $item) {
+			$this->addParsedUrl($item->getUrl(), $item);
 		}
 	}
 

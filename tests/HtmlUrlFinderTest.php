@@ -207,7 +207,7 @@ HTML;
     public function testDescribe()
     {
     		$url = $this->finder->setDocument('<img src="foo">', null)->find()->first();
-        $this->assertEquals('URL "foo" for <img> tag', $url->getElementContext()->describe());
+        $this->assertEquals('<img src="…">', $url->getElementContext()->describe());
     }
 
     /**

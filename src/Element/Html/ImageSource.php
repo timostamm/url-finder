@@ -18,7 +18,7 @@ class ImageSource extends BaseAttributeValue
 
 	public function describe()
 	{
-		return sprintf('URL "%s" for <img> tag', $this->getUrl());
+	    return '<img src="…">';
 	}
 
 }

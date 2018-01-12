@@ -82,7 +82,7 @@ class StyleAttributeUrlNotation extends StringElement implements ElementContext,
 	public function describe()
 	{
 		$tagname = trim(explode(' ', $this->getHtmlTag())[0], '<');
-		return sprintf('URL "%s" in style attribute of <%s> tag', $this->getUrl(), $tagname);
+		return sprintf('style attribute of <%s>', $tagname);
 	}
 
 	public function getHtmlTag()

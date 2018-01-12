@@ -20,7 +20,7 @@ EOT;
 	
 	public function testDescribe()
 	{
-		$this->assertEquals('URL "img.jpg"', $this->first->describe());
+		$this->assertEquals('url(…)', $this->first->describe());
 	}
 	
 	public function testOffset()

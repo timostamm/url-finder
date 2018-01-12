@@ -122,7 +122,7 @@ REGEX;
 
 	public function describe()
 	{
-		return sprintf('URL "%s"', $this->getUrl());
+	    return 'url(…)';
 	}
 
 }

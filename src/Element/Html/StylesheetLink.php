@@ -18,7 +18,7 @@ class StylesheetLink extends BaseAttributeValue
 
 	public function describe()
 	{
-		return sprintf('URL "%s" in <link rel="stylesheet"> tag', $this->getUrl());
+		return sprintf('<link rel="stylesheet" href="…">');
 	}
 
 }
