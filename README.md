@@ -1,5 +1,7 @@
 # PHP URL Finder
 
+[![Build Status](https://api.travis-ci.org/timostamm/url-finder.png)](https://travis-ci.org/timostamm/url-finder)
+
 Find and replace URLs in HTML and CSS documents. 
 
 
