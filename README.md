@@ -2,7 +2,7 @@
 
 [![Build Status](https://api.travis-ci.org/timostamm/url-finder.png)](https://travis-ci.org/timostamm/url-finder)
 
-Find and replace URLs in HTML and CSS documents. 
+Find and replace URLs in HTML, CSS and Markdown documents. 
 
 
 Example input HTML:
@@ -97,3 +97,12 @@ $finder->getDocument();
 
 Please note that import statements are not suported and you have to 
 follow stylesheet-links yourself.
+
+
+### Markdown support
+
+Markdown support is experimental right now. Caveats:
+
+- Link / image titles are not supported and will raise an error 
+- HTML with links within markdown is ignored 
+- Markdown is not available using UrlFinder::create, use new MarkdownUrlFinder()

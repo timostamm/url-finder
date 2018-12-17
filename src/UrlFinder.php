@@ -37,6 +37,7 @@ class UrlFinder
 	public static function create($document, $url)
 	{
 		foreach (self::$finders as $factory) {
+		    /** @var BaseUrlFinder $finder */
 			$finder = $factory();
 			if ($finder->supportsDocument($document)) {
 				$finder->setDocument($document, $url);
@@ -46,6 +47,7 @@ class UrlFinder
 		throw new DocumentException('Unsupported document.');
 	}
 
+	/** @var array */
 	private static $finders = [];
 
 	public static function registerFactory(callable $factory)

@@ -31,10 +31,8 @@ class UrlCollection implements Countable, IteratorAggregate
 	 *
 	 * @param string $pattern
 	 *        	A shell wildcard pattern, see http://php.net/manual/en/function.fnmatch.php
-	 * @param int $opt
-	 *        	Flags
-	 *        	
-	 * @return static
+	 *
+	 * @return static|FoundUrl[]
 	 */
 	public function find($pattern)
 	{
@@ -53,7 +51,7 @@ class UrlCollection implements Countable, IteratorAggregate
 	 * This is equivalent to find('*\/<file-pattern>')
 	 *
 	 * @param string $pattern
-	 * @return static
+	 * @return static|FoundUrl[]
 	 */
 	public function matchFilename($pattern)
 	{
@@ -114,7 +112,7 @@ class UrlCollection implements Countable, IteratorAggregate
 	/**
 	 *
 	 * @param string $pattern
-	 * @return static
+	 * @return static|FoundUrl[]
 	 */
 	public function matchHost($pattern)
 	{
@@ -129,7 +127,7 @@ class UrlCollection implements Countable, IteratorAggregate
 	/**
 	 *
 	 * @param string $pattern
-	 * @return static
+	 * @return static|FoundUrl[]
 	 */
 	public function matchHostNot($pattern)
 	{
@@ -144,7 +142,7 @@ class UrlCollection implements Countable, IteratorAggregate
 	/**
 	 *
 	 * @param string $pattern
-	 * @return static
+	 * @return static|FoundUrl[]
 	 */
 	public function matchScheme($pattern)
 	{
@@ -159,7 +157,7 @@ class UrlCollection implements Countable, IteratorAggregate
 	/**
 	 *
 	 * @param string $pattern
-	 * @return static
+	 * @return static|FoundUrl[]
 	 */
 	public function matchSchemeNot($pattern)
 	{
@@ -173,7 +171,7 @@ class UrlCollection implements Countable, IteratorAggregate
 
 	/**
 	 *
-	 * @return static
+	 * @return static|FoundUrl[]
 	 */
 	public function onlyHttp()
 	{
@@ -184,7 +182,7 @@ class UrlCollection implements Countable, IteratorAggregate
 
 	/**
 	 *
-	 * @return static
+	 * @return static|FoundUrl[]
 	 */
 	public function onlyHttps()
 	{
@@ -196,7 +194,7 @@ class UrlCollection implements Countable, IteratorAggregate
 	/**
 	 *
 	 * @param callable $fn
-	 * @return UrlCollection
+	 * @return static|FoundUrl[]
 	 */
 	public function where(callable $fn)
 	{
@@ -213,7 +211,7 @@ class UrlCollection implements Countable, IteratorAggregate
 	/**
 	 *
 	 * @param callable $fn
-	 * @return UrlCollection
+	 * @return static|FoundUrl[]
 	 */
 	public function whereNot(callable $fn)
 	{
@@ -258,7 +256,7 @@ class UrlCollection implements Countable, IteratorAggregate
 
 	/**
 	 *
-	 * @return array
+	 * @return FoundUrl[]
 	 */
 	public function toArray()
 	{
@@ -279,6 +277,8 @@ class UrlCollection implements Countable, IteratorAggregate
 	 *
 	 * {@inheritdoc}
 	 * @see IteratorAggregate::getIterator()
+     *
+     * @return FoundUrl[]|\ArrayIterator
 	 */
 	public function getIterator()
 	{

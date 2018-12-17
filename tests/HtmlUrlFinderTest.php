@@ -48,9 +48,9 @@ HTML;
         $style = Path::info('/assets/style/');
         $images = Path::info('/assets/images/');
         $scripts = Path::info('/assets/scripts/');
-        
+
         $myUrls = $this->finder->find()->matchHost('domain.tld');
-        
+
         foreach ($myUrls as $url) {
             $url->makeAbsolutePath();
         }
