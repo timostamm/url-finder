@@ -28,7 +28,7 @@ REGEX;
             $char_before = substr($string, $match[0][1] - 1, 1);
             if ($char_before === '!') {
                 // it is an image
-                return false;
+                continue;
             }
             yield new MdLinkNotation($raw_url, $offset, $label);
         }
