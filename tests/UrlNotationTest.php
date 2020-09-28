@@ -49,7 +49,7 @@ EOT;
 	 */
 	private $first;
 
-	protected function setUp()
+	protected function setUp(): void
 	{
 		$g = UrlNotation::find($this->string);
 		$this->found = iterator_to_array($g, false);

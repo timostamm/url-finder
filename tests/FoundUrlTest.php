@@ -109,7 +109,7 @@ class FoundUrlTest extends TestCase
 	/**
 	 * @before
 	 */
-	public function setup()
+	public function setup(): void
 	{
 		$this->base = new Url('http://domain.com/catalog/products.html');
 		$this->docContext = new DocumentContext($this->base, null, null);
@@ -120,7 +120,7 @@ class FoundUrlTest extends TestCase
 	/**
 	 * @after
 	 */
-	public function teardown()
+	public function teardown(): void
 	{
 		$this->url = null;
 	}

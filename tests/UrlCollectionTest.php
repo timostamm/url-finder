@@ -103,7 +103,7 @@ class UrlCollectionTest extends TestCase
 	/**
 	 * @before
 	 */
-	public function setup()
+	public function setup(): void
 	{
 		$base = new Url('http://domain.com/catalog/products.html');
 		$doc = new DocumentContext($base, null, null);
@@ -125,7 +125,7 @@ class UrlCollectionTest extends TestCase
 	/**
 	 * @after
 	 */
-	public function teardown()
+	public function teardown(): void
 	{
 		$this->collection = null;
 	}
