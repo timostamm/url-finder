@@ -20,8 +20,8 @@
 	"license" : "AGPL-3.0",
 	"require" : {
 		"php" : ">=5.6",
-		"timostamm/pathinfo": "dev-master", 
-		"timostamm/url-builder": "dev-master"
+		"timostamm/pathinfo": "^1.0.0",
+		"timostamm/url-builder": "^1.0.0"
 	},
 	"require-dev" : {
 		"phpunit/phpunit": "^9.3"
