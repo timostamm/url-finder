@@ -1,6 +1,9 @@
 # PHP URL Finder
 
-[![Build Status](https://api.travis-ci.org/timostamm/url-finder.png)](https://travis-ci.org/timostamm/url-finder)
+[![build](https://github.com/timostamm/url-finder/workflows/CI/badge.svg)](https://github.com/timostamm/url-finder/actions?query=workflow:"CI")
+![Packagist PHP Version](https://img.shields.io/packagist/dependency-v/timostamm/url-finder/php)
+[![GitHub tag](https://img.shields.io/github/tag/timostamm/url-finder?include_prereleases=&sort=semver&color=blue)](https://github.com/timostamm/url-finder/releases/)
+
 
 Find and replace URLs in HTML, CSS and Markdown documents. 
 
