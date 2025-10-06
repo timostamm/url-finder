@@ -5,6 +5,7 @@ namespace TS\Web\UrlFinder\Context;
 
 use Countable;
 use IteratorAggregate;
+use Traversable;
 
 
 class UrlCollection implements Countable, IteratorAggregate
@@ -268,7 +269,7 @@ class UrlCollection implements Countable, IteratorAggregate
 	 * {@inheritdoc}
 	 * @see Countable::count()
 	 */
-	public function count()
+	public function count(): int
 	{
 		return count($this->items);
 	}
@@ -277,10 +278,8 @@ class UrlCollection implements Countable, IteratorAggregate
 	 *
 	 * {@inheritdoc}
 	 * @see IteratorAggregate::getIterator()
-     *
-     * @return FoundUrl[]|\ArrayIterator
 	 */
-	public function getIterator()
+	public function getIterator(): Traversable
 	{
 		return new \ArrayIterator($this->items);
 	}
