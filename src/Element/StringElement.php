@@ -42,7 +42,7 @@ abstract class StringElement implements ElementContext
 			$char_no = $char_pos + 1;
 		} else {
 			$line_no = $line_count + 1;
-			$line_pos = mb_strrpos($s, "\n", null, $encoding) + 1;
+			$line_pos = mb_strrpos($s, "\n", 0, $encoding) + 1;
 			$char_no = ($char_pos - $line_pos) + 1;
 		}
 		return [
