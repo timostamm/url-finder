@@ -17,7 +17,7 @@
 	"name" : "timostamm/url-finder",
 	"type" : "library",
 	"description" : "Find and replace URLs in HTML and CSS documents",
-	"license" : "AGPL-3.0",
+	"license" : "MIT",
 	"require" : {
 		"php": "^8.0",
 		"ext-mbstring": "*",
